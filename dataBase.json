@@ -12,7 +12,31 @@
     },
     {
         "name":"sortBy",
-        "tags":"SORT BY,Popularity,Price -- Low to High, Price --High to Low,Newest First",
+        "tags":"SORT BY,Popularity,Price -- Low to High, Price -- High to Low,Newest First",
         "popularityMarker":"https://rukminim1.flixcart.com/www/40/40/promos/28/04/2022/7b036604-c843-4bb5-af27-7c675bf60f67.png?q=90,https://rukminim1.flixcart.com/www/40/40/promos/28/04/2022/7c0ab296-0784-44d3-be1b-7aaa4c36d990.png?q=90"
+    },
+    {
+        "name":"header-border",
+        "src":"https://rukminim1.flixcart.com/www/30/10/promos/01/08/2018/e364d9fe-1225-4814-bfee-2c461bf1c442.png?q=90"
+    },
+    {
+        "name":"advertisement",
+        "src" :"https://rukminim1.flixcart.com/fk-p-ads/650/300/dp-doc/1664874590025-cl8tzcf9l0022102ut26mgvek-G32%202%281%29.jpg?q=90"
+    },
+    {
+       "name":"cardOne",
+       "img":"https://rukminim1.flixcart.com/image/200/250/l2f20sw0/mobile/h/c/6/10a-b09xb7hv7q-redmi-original-imagdrgp8pkbzccw.jpeg?q=90&crop=false,https://rukminim1.flixcart.com/image/200/250/l2f20sw0/mobile/h/c/6/10a-b09xb7hv7q-redmi-original-imagdrgp8pkbzccw.jpeg?q=90&crop=false,https://rukminim1.flixcart.com/image/200/250/l2f20…mi-original-imagdrgp8pkbzccw.jpeg?q=90&crop=false",
+       "mobileName":"REDMI 10A (Slate Grey,32 GB)-REDMI 10 A(Slate Grey, 32 GB)",
+       "rating":"4.1,4.1,",
+       "ratingLogo":"★",
+       "ratingNumber":"(2,779),(2,779)",
+       "plusLogo":"https://rukminim1.flixcart.com/www/150/30/promos/07/06/2022/afa33081-fdc2-4dac-af42-7f99ff316372.png?q=90",
+       "realPrice":"8793,8560",
+       "discount":"14,''",
+       "discountTag":"% off,''",
+       "deliveryStatus":"free delivery",
+       "Offer":"Bank Offer,Bank Offer",
+       "spec":"3 GB RAM | 32 GB Storage,16.59 cm (6.53 inch) Display,500 mah,13MP Rear Camera,3 GB RAM | 32 GB Storage,16.59 cm (6.53 inch) Display,500 mah,13MP Rear Camera"
     }
+    
 ]
