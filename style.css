@@ -200,6 +200,7 @@ body{
 }
 .card-first-section-mobile-image img{
     width: 96px;
+    object-fit: contain;
     height: 114px;
 }
 .image-div-ad{

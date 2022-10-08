@@ -33,7 +33,7 @@ const svgPath = dataBase.map((a)=>{
         srcAd = a.src
     }
     if(a.name === "cardOne"){
-        imageData =  a.img.split(',')
+        imageData =  a.img.split('!')
         name = a.mobileName.split('-')
         rating = a.rating.split(',')
         logo =a.plusLogo
@@ -177,7 +177,7 @@ for(let i = 0;i<rating.length; i++){
     const sectionMainContainer = sectionBody.querySelector('.section-main-container')
 
     if(i===2){
-        sectionMainContainer.innerHTML = `<div class="top-sale-deals-container"><div class="top-sale-deals-conatainer-child"><div class="top-sale-deals-content-container"><div class="image-top-deals"><img src="${imageHref}"</div><div class="text"</div></div></div>`
+        sectionMainContainer.innerHTML += `<div class="top-sale-deals-container"><div class="top-sale-deals-conatainer-child"><div class="top-sale-deals-content-container"><div class="image-top-deals"><img src="${imageHref}"</div><div class="text"</div></div></div>`
     }
     
 
@@ -187,7 +187,7 @@ sectionMainContainer.innerHTML += `<div class ="section-card-main-container">
                                      <div class="card-luv-logo"><div class="luv-svg-container"><img src="${luvSvg}"></div></div>
                                        <div class="card-first-section-mobile-image" data-rating="${rating[i]}"><img src ="${imageData[i]}"> </div>
                                        <div class="card-first-section-flex-container">
-                                       <div class="card-second-section-container"><div class="second-card-mobile-details">${name[i]}</div><div class="second-card-second-child"><div class="popularity"><div class="second-card-second-child-first-child"><div class="second-card-second-child-first-child-rating">${rating[i]}</div><div class="second-card-second-child-first-child-logo">${ratingLogo}</div></div><div class="rated-count">${ratingNumber[i]}</div></div><div></div><div class="second-card-second-child-second-child"><img src="${logo}"></div></div><div class="second-section-third-child-flex"><div class="second-card-third-child"><div class="second-card-third-child-price">${realPrice[i]}</div><div class="third-child-discount-price">₹7,460</div><div class="second-card-third-child-text">${discount[i]}${discountTag[i]}</div></div><div class="delivery-status">${deliveryStatus}</div></div><div class="second-card-last-child">${offer[i]}</div></div>
+                                       <div class="card-second-section-container"><div class="second-card-mobile-details">${name[i]}</div><div class="second-card-second-child"><div class="popularity"><div class="second-card-second-child-first-child"><div class="second-card-second-child-first-child-rating">${rating[i]}</div><div class="second-card-second-child-first-child-logo">${ratingLogo}</div></div><div class="rated-count">${ratingNumber[i]}</div></div><div></div><div class="second-card-second-child-second-child"><img src="${logo}"></div></div><div class="second-section-third-child-flex"><div class="second-card-third-child"><div class="second-card-third-child-price">${realPrice[i]}</div><div class="third-child-discount-price">₹7,460</div><div class="second-card-third-child-text">${discount[i]}${discountTag}</div></div><div class="delivery-status">${deliveryStatus}</div></div><div class="second-card-last-child">${offer[i]}</div></div>
                                      </div></div>
         
                                      <div class="card-second-section">
@@ -206,9 +206,6 @@ sectionMainContainer.innerHTML += `<div class ="section-card-main-container">
                                      <div class="card-second-section-child">
                                      <div class="card-second-section-child-child">${camera[i]}</div>
                                      
-                                    </div>`
-
-
-                                    
+                                    </div>`                                   
 }
 
