@@ -2,6 +2,7 @@ import dataBase from"./dataBase.json" assert{type:"json"}
 const header = document.querySelector('.header-main-container')
 const headerEl = document.querySelector('header')
 const headerMain = document.querySelector("header")
+const boody = document.querySelector('body')
 
 
 
@@ -13,26 +14,7 @@ function createELE(ele,ment,name){
     a.classList.add(name)
     return(a)
 }
-let svgPathAll
-let flipKartLogo
-let mobileName
-let sortImg
-let sortByFixed
-let sortByFixedImg
-let imageData 
-    let  name 
-    let  rating 
-    let  logo 
-    let  realPrice
-    let  discount 
-    let  discountTag
-    let  deliveryStatus 
-    let  offer 
-    let  spec
-    let srcAd
-    let borderImg
-    let ratingLogo
-    let ratingNumber
+let svgPathAll,flipKartLogo,mobileName,sortImg,sortByFixedImg,imageData,name,rating,logo,realPrice,discount,discountTag,deliveryStatus,offer,srcAd,borderImg,ratingLogo,ratingNumber,deviceSpec,deviceDim,battery,camera,sortByFixed,luvSvg,imageHref,imageTopDeals,image,topDealsText;
 const svgPath = dataBase.map((a)=>{
     if(a.name==="header"){
         svgPathAll = a.svgpath
@@ -64,13 +46,22 @@ const svgPath = dataBase.map((a)=>{
         discountTag = a.discountTag.split(',')
         deliveryStatus = a.deliveryStatus
         offer = a.Offer.split(',')
-        spec = a.spec.split(',')
+        // spec = a.spec.split(',')
         ratingLogo = a.ratingLogo
-        ratingNumber = a.ratingNumber.split(',')
+        ratingNumber = a.ratingNumber.split('-')
+        deviceSpec = a.deviceSpec.split(',')
+        deviceDim = a.deviceDim.split(',')
+        battery = a.battery.split(',')
+        camera = a.camera.split(',')
+        luvSvg = a.luvSvg
         
     }
     if(a.name ==="header-border"){
     borderImg =  a.src
+    }
+    if(a.name === "topDeals"){
+        imageTopDeals = a.imageHref.split(',')
+        topDealsText = a.text.split(',')
     }
     // if(a.name === "cardTwo"){
     //      imageDatatwo =  a.img
@@ -97,6 +88,7 @@ const sortAnchorTag = document.querySelector('.sort-container')
 console.log(sortAnchorTag)
 ////// sort on click
 sortAnchorTag.addEventListener('click',()=>{
+    boody.classList.toggle('no-scroll') 
 createELE('div','header','sort-div-fixed')
 const sortDivFixed = document.querySelector('.sort-div-fixed')
 sortDivFixed.innerHTML = `<div class="sort-div-fixed-chid"><div class="sort-by-div-first-child">${sortByFixed[0]}</div><div class="fixed-border-div"></div><div class="sort-by-fixed-div-child-three"></div></div></div>`
@@ -126,20 +118,17 @@ createElmTwo.appendChild(createElmFour)
 const hideDiv = document.querySelector(".sort-div-fixed")                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
  console.log(hideDiv)
 hideDiv.addEventListener('click',function fooi(){
+    boody.classList.remove('no-scroll') 
     console.log('removedone')
-    
-   
 setTimeout(()=>{
     hideDiv.remove('sort-div-fixed')
-},100)
+},300)
 })
 
 // let createDiv = sortByChildThree.appendChild('createElm')
 // createElm.classList.add('sorting-third-child-child')
 
 }
-
-
 const sortByFixedChildThree = document.querySelectorAll('.sort-by-fixed-child-three')
 sortByFixedChildThree.forEach((a)=>{a.addEventListener('click',()=>{
     console.log('hoooyyy')
@@ -156,26 +145,19 @@ setTimeout(()=>{
     console.log('removed')
     const hideDiv = document.querySelector(".sort-div-fixed")  
     hideDiv.remove('sort-div-fixed')
-},100)
+},300)
 }
 
 })})
-
-
 // createELE('div','.sort-div-fixed','sort-div-fixed-child')
 // createELE('div','.sort-div-fixed-child','sort-div-first-child') ///// first
-
 //  createELE('div','.sort-div-first-child','sort-by-div')
 // const data = document.querySelector('.sort-by-div')
 // console.log(data)
 // console.log(sortByFixed[0])
 // data.innerHTML = `${sortByFixed[0]}`
-
 // const fixedSort = document.querySelector('.sort-div-fixed-child')
 // fixedSort.innerHTML += `<div class="sort-div-second-child></div>`
-
-
-
 
 // })
 // const headerDiv = document.querySelector('.sort-div-fixed')
@@ -185,39 +167,48 @@ setTimeout(()=>{
 
 // console.log(headerDiv)
 //     headerDiv.remove()
-
 })
-
 const body = document.querySelector('body')
 const sectionBody = document.createElement('section')
 body.appendChild(sectionBody)
 sectionBody
 sectionBody.innerHTML = `<div class="image-div-ad"><img src="${srcAd}"></div><div class="section-main-container"></div>`
-for(let i = 0;i<name.length; i++){
+for(let i = 0;i<rating.length; i++){
+    const sectionMainContainer = sectionBody.querySelector('.section-main-container')
 
-const sectionMainContainer = sectionBody.querySelector('.section-main-container')
+    if(i===2){
+        sectionMainContainer.innerHTML = `<div class="top-sale-deals-container"><div class="top-sale-deals-conatainer-child"><div class="top-sale-deals-content-container"><div class="image-top-deals"><img src="${imageHref}"</div><div class="text"</div></div></div>`
+    }
+    
+
+
 sectionMainContainer.innerHTML += `<div class ="section-card-main-container">
                                      <div class="card-first-section">
-                                       <div class="card-first-section-mobile-image"><img src ="${imageData[i]}"> </div>
+                                     <div class="card-luv-logo"><div class="luv-svg-container"><img src="${luvSvg}"></div></div>
+                                       <div class="card-first-section-mobile-image" data-rating="${rating[i]}"><img src ="${imageData[i]}"> </div>
                                        <div class="card-first-section-flex-container">
-                                       <div class="card-second-section-container"><div class="second-card-mobile-details">${name[i]}</div><div class="second-card-second-child"><div class="popularity"><div class="second-card-second-child-first-child"><div class="second-card-second-child-first-child-rating">${rating[i]}</div><div class="second-card-second-child-first-child-logo">${ratingLogo}</div></div><div class="rated-count">${ratingNumber[i]}</div></div><div></div><div class="second-card-second-child-second-child"><img src="${logo}"></div></div><div class="second-section-third-child-flex"><div class="second-card-third-child"><div class="second-card-third-child-price">${realPrice[i]}</div><div class="third-child-discount-price">7,460</div><div class="second-card-third-child-text">${discount[i]}${discountTag[i]}</div></div><div class="delivery-status">${deliveryStatus}</div></div><div class="second-card-last-child">${offer[i]}</div></div>
-                                     </div>
+                                       <div class="card-second-section-container"><div class="second-card-mobile-details">${name[i]}</div><div class="second-card-second-child"><div class="popularity"><div class="second-card-second-child-first-child"><div class="second-card-second-child-first-child-rating">${rating[i]}</div><div class="second-card-second-child-first-child-logo">${ratingLogo}</div></div><div class="rated-count">${ratingNumber[i]}</div></div><div></div><div class="second-card-second-child-second-child"><img src="${logo}"></div></div><div class="second-section-third-child-flex"><div class="second-card-third-child"><div class="second-card-third-child-price">${realPrice[i]}</div><div class="third-child-discount-price">₹7,460</div><div class="second-card-third-child-text">${discount[i]}${discountTag[i]}</div></div><div class="delivery-status">${deliveryStatus}</div></div><div class="second-card-last-child">${offer[i]}</div></div>
+                                     </div></div>
         
                                      <div class="card-second-section">
                                      <div class="card-second-section-child">
-                                     <div class="card-second-section-child-child"></div></div>
+                                     <div class="card-second-section-child-child">${deviceSpec[i]}</div></div>
                                   
 
                                      <div class="card-second-section-child">
-                                     <div class="card-second-section-child-child">
+                                     <div class="card-second-section-child-child">${deviceDim[i]}
                                      </div>
                                      </div>
             
                                      <div class="card-second-section-child">
-                                     <div class="card-second-section-child-child"></div></div>
+                                     <div class="card-second-section-child-child">${battery[i]}</div></div>
                                      
                                      <div class="card-second-section-child">
-                                     <div class="card-second-section-child-child"></div></div>
-                                     </div>
+                                     <div class="card-second-section-child-child">${camera[i]}</div>
+                                     
                                     </div>`
+
+
+                                    
 }
+
