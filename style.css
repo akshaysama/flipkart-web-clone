@@ -417,3 +417,14 @@ justify-content: center;
     width: 100%;
     background-color: rgba(255,255,255,1.00);
 }
+.emi-text{
+    font-size: 12px;
+    font-family: "sherif";
+}
+.card-emi-details{
+    font-size: 12px;
+    font-family: "sherif";
+}
+.margin-third-class{
+margin-left: 0;
+}

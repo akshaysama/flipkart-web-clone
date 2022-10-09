@@ -14,7 +14,7 @@ function createELE(ele,ment,name){
     a.classList.add(name)
     return(a)
 }
-let svgPathAll,flipKartLogo,mobileName,sortImg,sortByFixedImg,imageData,name,rating,logo,realPrice,discount,discountTag,deliveryStatus,offer,srcAd,borderImg,ratingLogo,ratingNumber,deviceSpec,deviceDim,battery,camera,sortByFixed,luvSvg,imageHref,imageTopDeals,image,topDealsText;
+let svgPathAll,flipKartLogo,mobileName,sortImg,sortByFixedImg,imageData,name,rating,logo,realPrice,discount,discountTag,deliveryStatus,offer,srcAd,borderImg,ratingLogo,ratingNumber,deviceSpec,deviceDim,battery,camera,sortByFixed,luvSvg,imageHref,imageTopDeals,image,topDealsText,emiAvailable,exchangeText,emiTag;
 const svgPath = dataBase.map((a)=>{
     if(a.name==="header"){
         svgPathAll = a.svgpath
@@ -46,6 +46,7 @@ const svgPath = dataBase.map((a)=>{
         discountTag = a.discountTag.split(',')
         deliveryStatus = a.deliveryStatus
         offer = a.Offer.split(',')
+        
         // spec = a.spec.split(',')
         ratingLogo = a.ratingLogo
         ratingNumber = a.ratingNumber.split('-')
@@ -54,6 +55,8 @@ const svgPath = dataBase.map((a)=>{
         battery = a.battery.split(',')
         camera = a.camera.split(',')
         luvSvg = a.luvSvg
+        exchangeText =a.exchangeText
+        emiTag = a.emiTag
         
     }
     if(a.name ==="header-border"){
@@ -63,6 +66,9 @@ const svgPath = dataBase.map((a)=>{
         imageTopDeals = a.imageHref.split(',')
         console.log(imageTopDeals)
         topDealsText = a.text.split(',')
+    }
+    if(a.name === "cardOne"){
+        emiAvailable = a.emiAvailable.split(',')
     }
     // if(a.name === "cardTwo"){
     //      imageDatatwo =  a.img
@@ -77,18 +83,17 @@ const svgPath = dataBase.map((a)=>{
     //      spectwo = a.spec
     //  }
 })
-console.log(imageData)
+console.log(discount)
 console.log(sortByFixedImg)
 sortImg = sortImg.split(',')
 console.log(sortImg[0])
 let priceCalc=[]
  parseInt(realPrice)
-for(let i=0;i<3;i++){
+for(let i=0;i<rating.length;i++){
     priceCalc[i]= realPrice.shift()
 }
 console.log(realPrice)
 console.log(priceCalc)
-
 svgPathAll = svgPathAll.split(',')
 header.innerHTML = `<div class="header-flex-box-one"><div class="image-div"><a href=""><svg width="19" height="16" viewBox="0 0 19 16" xmlns="http://www.w3.org/2000/svg">${svgPathAll[0]}</svg></a></div><div class="header-flipkart-logo"><img src="${flipKartLogo}"></div><div class="header-span"><span>${mobileName[0]}</span></div></div><div class="header-flex-box-two"><div class="header-search-bar"><a href=""><svg fill="#fff" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">${svgPathAll[1]}</svg></a></div><div class="shopping-cart-svg-header"><a href=""><svg width="16" height="16" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">${svgPathAll[2]}</svg></a></div><div class="header-login-div"><a href=""><span>${mobileName[1]}</span><a></div>`
 headerMain.innerHTML += `<div class="border-image"><img src="${borderImg}"></div><div class="header-second-container"><a class="sort-container"><div class="header-sort-container"><div class="header-sort"><img src="${sortImg[0]}"></div><div>${sortImg[2]}</div></div></a><div class="border-div"></div><div class="header-popularity-main-container"><div class="header-popularity-container"><div class="filter"><img src="${sortImg[1]}"</div></div><div class="filter-text">${sortImg[3]}</div></div></div>`
@@ -195,13 +200,18 @@ for(let i = 0;i<rating.length; i++){
      console.log(typeof discountPrice)
  let discountPriceArray = discountPrice.split('')
  discountPriceArray.splice(0,0,'₹')
- if(discountPriceArray.length===4){
-     discountPriceArray.splice(1,0,',')
- }else{
-    discountPriceArray.splice(2,0,',')
+ if(discountPriceArray.length ===6){
+    discountPriceArray.splice(3,0,',')
+ }
+ if(discountPriceArray.length===5){
+     discountPriceArray.splice(2,0,',')
  }
  discountPriceArray=discountPriceArray.join('')
      console.log(discountPriceArray)
+     if(offer[i] === undefined){
+        console.log('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
+        offer[i]= ""
+     }
 
 
 sectionMainContainer.innerHTML += `<div class ="section-card-main-container">
@@ -209,7 +219,7 @@ sectionMainContainer.innerHTML += `<div class ="section-card-main-container">
                                      <div class="card-luv-logo"><div class="luv-svg-container"><img src="${luvSvg}"></div></div>
                                        <div class="card-first-section-mobile-image" data-rating="${rating[i]}"><img src ="${imageData[i]}"> </div>
                                        <div class="card-first-section-flex-container">
-                                       <div class="card-second-section-container"><div class="second-card-mobile-details">${name[i]}</div><div class="second-card-second-child"><div class="popularity"><div class="second-card-second-child-first-child"><div class="second-card-second-child-first-child-rating">${rating[i]}</div><div class="second-card-second-child-first-child-logo">${ratingLogo}</div></div><div class="rated-count">${ratingNumber[i]}</div></div><div></div><div class="second-card-second-child-second-child"><img src="${logo}"></div></div><div class="second-section-third-child-flex"><div class="second-card-third-child"><div class="second-card-third-child-price">${priceCalc[i].strike()}</div><div class="third-child-discount-price">${discountPriceArray}</div><div class="second-card-third-child-text">${discount[i]}${discountTag}</div></div><div class="delivery-status">${deliveryStatus}</div></div><div class="second-card-last-child">${offer[i]}</div></div>
+                                       <div class="card-second-section-container"><div class="second-card-mobile-details">${name[i]}</div><div class="second-card-second-child"><div class="popularity"><div class="second-card-second-child-first-child"><div class="second-card-second-child-first-child-rating">${rating[i]}</div><div class="second-card-second-child-first-child-logo">${ratingLogo}</div></div><div class="rated-count">${ratingNumber[i]}</div></div><div></div><div class="second-card-second-child-second-child"><img src="${logo}"></div></div><div class="second-section-third-child-flex"><div class="second-card-third-child"><div class="second-card-third-child-price">${priceCalc[i]}</div><div class="third-child-discount-price">${discountPriceArray}</div><div class="second-card-third-child-text">${discount[i]}${discountTag}</div></div><div class="delivery-status">${deliveryStatus}</div></div><div class="second-card-last-child">${offer[i]}</div></div>
                                      </div></div>
         
                                      <div class="card-second-section">
@@ -223,11 +233,68 @@ sectionMainContainer.innerHTML += `<div class ="section-card-main-container">
                                      </div>
             
                                      <div class="card-second-section-child">
-                                     <div class="card-second-section-child-child">${battery[i]}</div></div>
-                                     
+                                     <div class="card-second-section-child-child">${battery[i]}</div></div>                  
                                      <div class="card-second-section-child">
-                                     <div class="card-second-section-child-child">${camera[i]}</div>
-                                     
-                                    </div>`                                   
+                                     <div class="card-second-section-child-child">${camera[i]}</div>                                  
+                                    </div>`    
+                                    console.log(discount[i])
+                                    if(discount[i]==="0"){
+                                        let requiredIndex = i
+                                        console.log(i)
+                                        const secondCardThirdChild = document.querySelectorAll('.second-card-third-child-text')
+                                        const marginZero = document.querySelectorAll('.third-child-discount-price')
+                                        const secondCard = document.querySelectorAll(".second-card-third-child-price")
+                                        secondCard.forEach((a,i)=>{
+                                            if (i === requiredIndex){
+                                             a.style.display = "none"
+                                            }
+                                        })
+                                        marginZero.forEach((a,i)=>{
+                    
+                                           
+                                            console.log(requiredIndex)
+                                           
+                                                if(i === requiredIndex){
+                                                    console.log(a)
+                                                    console.log(priceCalc)
+                                                    a.innerHTML = `₹${priceCalc[i]}`
+                                                    a.style.marginLeft = "0"  
+                                                    console.log(a)                                             
+                                                }
+    
+                                        })
+                                     secondCardThirdChild.forEach((a,i)=>{
+                                        console.log(a)
+                                        if(i===requiredIndex){
+                                            
+                            a.style.display ="none"
+                                        
+                                        }
+                                     })
+                                        console.log(secondCard)
+                                    }
+                                    if(emiAvailable[i]!="null"){
+                                    const addEmiField = document.querySelectorAll('.card-second-section-container')
+                                    console.log(addEmiField)
+                                    addEmiField.forEach((a,i)=>{
+                                        console.log('hiiii')
+                                        if(emiAvailable[i]!="null"){
+                                        a.innerHTML += `<div class="emi-text">${exchangeText}</div><div class="card-emi-details">${emiTag}</div>`}
+                                    })
+                                    const changeHeight = document.querySelectorAll('.card-first-section')
+                                    const secondCardLastChild = document.querySelectorAll(".second-card-last-child")
+                                    secondCardLastChild.forEach((a,i)=>{
+                                        if(emiAvailable[i]!="null"){
+                                            a.style.display = "none"
+                                           }
+                                    })
+                                    changeHeight.forEach((a,i)=>{
+                                       if(emiAvailable[i]!="null"){
+                                        a.style.height = "162px";
+                                       }
+                                    })
+                                    }
+                                    
+                                    
 }
 
