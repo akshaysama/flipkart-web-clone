@@ -61,6 +61,7 @@ const svgPath = dataBase.map((a)=>{
     }
     if(a.name === "topDeals"){
         imageTopDeals = a.imageHref.split(',')
+        console.log(imageTopDeals)
         topDealsText = a.text.split(',')
     }
     // if(a.name === "cardTwo"){
@@ -80,6 +81,13 @@ console.log(imageData)
 console.log(sortByFixedImg)
 sortImg = sortImg.split(',')
 console.log(sortImg[0])
+let priceCalc=[]
+ parseInt(realPrice)
+for(let i=0;i<3;i++){
+    priceCalc[i]= realPrice.shift()
+}
+console.log(realPrice)
+console.log(priceCalc)
 
 svgPathAll = svgPathAll.split(',')
 header.innerHTML = `<div class="header-flex-box-one"><div class="image-div"><a href=""><svg width="19" height="16" viewBox="0 0 19 16" xmlns="http://www.w3.org/2000/svg">${svgPathAll[0]}</svg></a></div><div class="header-flipkart-logo"><img src="${flipKartLogo}"></div><div class="header-span"><span>${mobileName[0]}</span></div></div><div class="header-flex-box-two"><div class="header-search-bar"><a href=""><svg fill="#fff" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">${svgPathAll[1]}</svg></a></div><div class="shopping-cart-svg-header"><a href=""><svg width="16" height="16" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">${svgPathAll[2]}</svg></a></div><div class="header-login-div"><a href=""><span>${mobileName[1]}</span><a></div>`
@@ -177,9 +185,23 @@ for(let i = 0;i<rating.length; i++){
     const sectionMainContainer = sectionBody.querySelector('.section-main-container')
 
     if(i===2){
-        sectionMainContainer.innerHTML += `<div class="top-sale-deals-container"><div class="top-sale-deals-conatainer-child"><div class="top-sale-deals-content-container"><div class="image-top-deals"><img src="${imageHref}"</div><div class="text"</div></div></div>`
+        sectionMainContainer.innerHTML += `<div class="top-sale-deals-container"><div class="top-sale-deals-conatainer-child"><div class="top-sale-deals-content-container"><div class="image-top-deals"><img src="${imageTopDeals[0]}"></div><div class="top-deals-text"><div class="top-deals-flex-container-one">${topDealsText[0]}</div><div class="top-deals-flex-container-two">${topDealsText[1]}</div></div><div class="arrow-top-deals"><img src="${imageTopDeals[1]}"></div></div></div></div>`
     }
-    
+    let discountAmount = (priceCalc[i] * discount[i])/100
+    console.log(discountAmount)
+
+     let discountPrice = parseInt(priceCalc[i]-discountAmount)
+     discountPrice = discountPrice.toString()
+     console.log(typeof discountPrice)
+ let discountPriceArray = discountPrice.split('')
+ discountPriceArray.splice(0,0,'₹')
+ if(discountPriceArray.length===4){
+     discountPriceArray.splice(1,0,',')
+ }else{
+    discountPriceArray.splice(2,0,',')
+ }
+ discountPriceArray=discountPriceArray.join('')
+     console.log(discountPriceArray)
 
 
 sectionMainContainer.innerHTML += `<div class ="section-card-main-container">
@@ -187,7 +209,7 @@ sectionMainContainer.innerHTML += `<div class ="section-card-main-container">
                                      <div class="card-luv-logo"><div class="luv-svg-container"><img src="${luvSvg}"></div></div>
                                        <div class="card-first-section-mobile-image" data-rating="${rating[i]}"><img src ="${imageData[i]}"> </div>
                                        <div class="card-first-section-flex-container">
-                                       <div class="card-second-section-container"><div class="second-card-mobile-details">${name[i]}</div><div class="second-card-second-child"><div class="popularity"><div class="second-card-second-child-first-child"><div class="second-card-second-child-first-child-rating">${rating[i]}</div><div class="second-card-second-child-first-child-logo">${ratingLogo}</div></div><div class="rated-count">${ratingNumber[i]}</div></div><div></div><div class="second-card-second-child-second-child"><img src="${logo}"></div></div><div class="second-section-third-child-flex"><div class="second-card-third-child"><div class="second-card-third-child-price">${realPrice[i]}</div><div class="third-child-discount-price">₹7,460</div><div class="second-card-third-child-text">${discount[i]}${discountTag}</div></div><div class="delivery-status">${deliveryStatus}</div></div><div class="second-card-last-child">${offer[i]}</div></div>
+                                       <div class="card-second-section-container"><div class="second-card-mobile-details">${name[i]}</div><div class="second-card-second-child"><div class="popularity"><div class="second-card-second-child-first-child"><div class="second-card-second-child-first-child-rating">${rating[i]}</div><div class="second-card-second-child-first-child-logo">${ratingLogo}</div></div><div class="rated-count">${ratingNumber[i]}</div></div><div></div><div class="second-card-second-child-second-child"><img src="${logo}"></div></div><div class="second-section-third-child-flex"><div class="second-card-third-child"><div class="second-card-third-child-price">${priceCalc[i].strike()}</div><div class="third-child-discount-price">${discountPriceArray}</div><div class="second-card-third-child-text">${discount[i]}${discountTag}</div></div><div class="delivery-status">${deliveryStatus}</div></div><div class="second-card-last-child">${offer[i]}</div></div>
                                      </div></div>
         
                                      <div class="card-second-section">

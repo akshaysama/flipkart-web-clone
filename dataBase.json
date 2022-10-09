@@ -25,7 +25,7 @@
     },
     {
        "name":"topDeals",
-       "imageHref":"https://rukminim1.flixcart.com/www/150/150/promos/…022/d3d5f868-99f3-4e9f-88a7-aeb6cb93f36c.png?q=90,https://rukminim1.flixcart.com/www/20/20/promos/14/06/2019/2b122c28-4cef-490b-a251-41e0176c977a.png?q=90",
+       "imageHref":"https://rukminim1.flixcart.com/www/150/150/promos/14/09/2022/d3d5f868-99f3-4e9f-88a7-aeb6cb93f36c.png?q=90,https://rukminim1.flixcart.com/www/20/20/promos/14/06/2019/2b122c28-4cef-490b-a251-41e0176c977a.png?q=90",
        "text":"Top Sale Deals,offer ends soon"
     },
     {
@@ -45,7 +45,9 @@
        "deviceSpec":"3 GB RAM | 32 GB Storage,3 GB RAM | 64 GB Storage,6 GB RAM | 128 GB Storage",
        "deviceDim":"16.59 cm (6.53 inch) Display,16.59 cm (6.53 inch) Display,16.94 cm (6.67 inch) Full HD+ AMOLED Display",
        "battery":"5000 mAh,5000 mAh,4500mAh",
-       "camera":"13MP Rear Camera,13MP Rear Camera,13MP Rear Camera"
+       "camera":"13MP Rear Camera,13MP Rear Camera,13MP Rear Camera",
+       "emiAvailabile":"null,null,available",
+       "emiTag":"No Cost EMI from | month"
     }
     
 ]
