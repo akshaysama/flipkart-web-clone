@@ -14,7 +14,7 @@ function createELE(ele,ment,name){
     a.classList.add(name)
     return(a)
 }
-let svgPathAll,flipKartLogo,mobileName,sortImg,sortByFixedImg,imageData,name,rating,logo,realPrice,discount,discountTag,deliveryStatus,offer,srcAd,borderImg,ratingLogo,ratingNumber,deviceSpec,deviceDim,battery,camera,sortByFixed,luvSvg,imageHref,imageTopDeals,image,topDealsText,emiAvailable,exchangeText,emiTag;
+let svgPathAll,flipKartLogo,mobileName,sortImg,sortByFixedImg,imageData,name,rating,logo,realPrice,discount,discountTag,deliveryStatus,offer,srcAd,borderImg,ratingLogo,ratingNumber,deviceSpec,deviceDim,battery,camera,sortByFixed,luvSvg,imageHref,imageTopDeals,image,topDealsText,emiAvailable,exchangeText,emiTag,discountPriceArray;
 const svgPath = dataBase.map((a)=>{
     if(a.name==="header"){
         svgPathAll = a.svgpath
@@ -143,8 +143,98 @@ setTimeout(()=>{
 
 }
 const sortByFixedChildThree = document.querySelectorAll('.sort-by-fixed-child-three')
+sortByFixedChildThree[0].addEventListener('click',(a)=>{
+ 
+})
 sortByFixedChildThree.forEach((a)=>{a.addEventListener('click',()=>{
     console.log('hoooyyy')
+    const sectionMainContainer= document.querySelector('.section-main-container')
+    console.log(result)
+    let d = 0
+sectionMainContainer.innerHTML = ``
+    
+    for(result[d];d<6;result[d+1]){
+        d = d+1
+       let i =parseInt(result[d])
+       console.log(typeof i)
+       
+console.log(imageData[i])
+    sectionMainContainer.innerHTML +=`<div class ="section-card-main-container">
+                                         <div class="card-first-section">
+                                         <div class="card-luv-logo"><div class="luv-svg-container"><img src="${luvSvg}"></div></div>
+                                           <div class="card-first-section-mobile-image" data-rating="${rating[i]}"><img src ="${imageData[i]}"> </div>
+                                           <div class="card-first-section-flex-container">
+                                           <div class="card-second-section-container"><div class="second-card-mobile-details">${name[i]}</div><div class="second-card-second-child"><div class="popularity"><div class="second-card-second-child-first-child"><div class="second-card-second-child-first-child-rating">${rating[i]}</div><div class="second-card-second-child-first-child-logo">${ratingLogo}</div></div><div class="rated-count">${ratingNumber[i]}</div></div><div></div><div class="second-card-second-child-second-child"><img src="${logo}"></div></div><div class="second-section-third-child-flex"><div class="second-card-third-child"><div class="second-card-third-child-price">${priceCalc[i]}</div><div class="third-child-discount-price">${discountPriceArray}</div><div class="second-card-third-child-text">${discount[i]}${discountTag}</div></div><div class="delivery-status">${deliveryStatus}</div></div><div class="second-card-last-child">${offer[i]}</div></div>
+                                         </div></div>
+            
+                                         <div class="card-second-section">
+                                         <div class="card-second-section-child">
+                                         <div class="card-second-section-child-child">${deviceSpec[i]}</div></div>
+                                      
+    
+                                         <div class="card-second-section-child">
+                                         <div class="card-second-section-child-child">${deviceDim[i]}
+                                         </div>
+                                         </div>
+                
+                                         <div class="card-second-section-child">
+                                         <div class="card-second-section-child-child">${battery[i]}</div></div>                  
+                                         <div class="card-second-section-child">
+                                         <div class="card-second-section-child-child">${camera[i]}</div>                                  
+                                        </div>`
+          
+           discount[i] = parseInt(discount[i]) 
+            console.log(typeof discount[i])                      
+            if(discount[i]===0){
+                let requiredIndex = i
+                console.log(i)
+                const secondCardThirdChild = document.querySelectorAll('.second-card-third-child-text')
+                const marginZero = document.querySelectorAll('.third-child-discount-price')
+                const secondCard = document.querySelectorAll(".second-card-third-child-price")
+                secondCard.forEach((a,i)=>{                 
+                     a.style.display = "none"                  
+                })
+                marginZero.forEach((a,i)=>{
+                    console.log(requiredIndex)
+                            console.log(a)
+                            console.log(priceCalc)
+                            a.innerHTML = `₹${priceCalc[i]}`
+                            a.style.marginLeft = "0"  
+                            console.log(a)                                             
+                })
+             secondCardThirdChild.forEach((a,i)=>{
+                console.log(a)
+    a.style.display ="none"  
+             })
+                console.log(secondCard)
+            }
+            if(emiAvailable[i]!="null"){
+            const addEmiField = document.querySelectorAll('.card-second-section-container')
+            console.log(addEmiField)
+            addEmiField.forEach((a,i)=>{
+                console.log('hiiii')
+                if(emiAvailable[i]!="null"){
+                a.innerHTML += `<div class="emi-text">${exchangeText}</div><div class="card-emi-details">${emiTag}</div>`}
+            })
+            const changeHeight = document.querySelectorAll('.card-first-section')
+            const secondCardLastChild = document.querySelectorAll(".second-card-last-child")
+            secondCardLastChild.forEach((a,i)=>{
+                if(emiAvailable[i]!="null"){
+                    a.style.display = "none"
+                   }
+            })
+            changeHeight.forEach((a,i)=>{
+               if(emiAvailable[i]!="null"){
+                a.style.height = "162px";
+               }
+            })
+            }
+    if(d===6){
+        console.log('hii')
+        return 0
+    }
+    console.log('hiii')
+    }
     const sortByFixedIcon = a.querySelectorAll('.fixed-sort-by-icon')
 sortByFixedIcon[0].innerHTML = `<img src="${sortByFixedImg[1]}">`
 console.log(sortByFixedIcon)
@@ -162,6 +252,8 @@ setTimeout(()=>{
 }
 
 })})
+
+
 // createELE('div','.sort-div-fixed','sort-div-fixed-child')
 // createELE('div','.sort-div-fixed-child','sort-div-first-child') ///// first
 //  createELE('div','.sort-div-first-child','sort-by-div')
@@ -181,6 +273,61 @@ setTimeout(()=>{
 // console.log(headerDiv)
 //     headerDiv.remove()
 })
+/////////////herwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+
+
+
+// numRating.sort((a,b)=>{
+//     a>b?-1:0;
+// })
+let index
+console.log(rating)
+let arr = []
+let arrOne
+let arr3 =[]
+console.log(arr)
+  arr = rating.slice(0,rating.length)
+  arrOne = rating.slice(0,rating.length)
+  console.log(arrOne)
+  let numbrsTwo = arrOne.map(Number)
+  console.log(numbrsTwo)
+  let numbers = arr.map(Number)
+ console.log(numbers)
+console.log(numbers.sort((a,b)=>{
+    if(a>b){
+        return -1
+    }{
+        if(a<b){
+            return 1
+        }
+        if(a===b){
+            return 0
+        }
+    }
+}))
+numbers.map((a,i)=>{
+// if(a[i]===numbrsTwo[i]){
+//     console.log('hii')
+// }
+for(let b=0;b<7;b++){
+ if(a===numbrsTwo[b]){
+    console.log('hellooo')
+    arr3 += b
+   
+ }
+}
+
+})
+let result=[]
+console.log(arr3)
+let arr4 = arr3.split('')
+console.log(arr4)
+for (let i = 0; i < arr4.length; ++i) {
+    if (arr4[i] == arr4[i + 4] || (arr4[i]==arr4[i+2])) continue
+    result.push(arr4[i])
+  }
+console.log(result)
+console.log(rating)
 const body = document.querySelector('body')
 const sectionBody = document.createElement('section')
 body.appendChild(sectionBody)
@@ -198,7 +345,7 @@ for(let i = 0;i<rating.length; i++){
      let discountPrice = parseInt(priceCalc[i]-discountAmount)
      discountPrice = discountPrice.toString()
      console.log(typeof discountPrice)
- let discountPriceArray = discountPrice.split('')
+  discountPriceArray = discountPrice.split('')
  discountPriceArray.splice(0,0,'₹')
  if(discountPriceArray.length ===6){
     discountPriceArray.splice(3,0,',')
@@ -298,3 +445,6 @@ sectionMainContainer.innerHTML += `<div class ="section-card-main-container">
                                     
 }
 
+
+
+  
